@@ -1,5 +1,9 @@
 % Fiber-photometry data recorded with TDT DAQ. (this extracts the data)
-inputFolder = '..data/RA_Odor_604-201116-160100';
+% inputFolder = '..data/RA_Odor_604-201116-160100';
+
+%dp
+inputFolder= 'K:\TDT Photometry tanks\DP_DSTrainingv02_TDT2-191203-124106\VP-VTA-FP round 2\VP-VTA-FP17and19-200810-122642'
+
 % Load 465nm and 405nm.
 signalTitle = 'Dv1A';
 referenceTitle = 'Dv2A';
@@ -26,7 +30,9 @@ configuration.resamplingFrequency = 100;
 configuration.baselineEpochs = [0, 3500];
 configuration.conditionEpochs = {'Citral baseline', citralBaseline, 'Citral', citral, 'Post citral', citralPost, 'Bobcat baseline', bobcatBaseline, 'Bobcat', bobcat, 'Post bobcat', bobcatPost};
 configuration.peakWindow = [-5, 5];
-configuration.events = [citral(1:2:end), bobcat(1:2:end)];
+% configuration.events = [citral(1:2:end), bobcat(1:2:end)];
+configuration.events = [citral, bobcat]; %dp testing without 2 spacing- looks mostly same except additional vertical black lines demarcating citral/postcitral and bobcat/postbobcat epochs... also except 1 peak found in post- epochs?
+
 configuration.eventWindow = [-1, 29];
 configuration.threshold = {2.91, @mad, @median};
 configuration.fitReference = true;
